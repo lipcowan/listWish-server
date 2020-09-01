@@ -5,27 +5,7 @@ const ListsService = {
     getAllLists(db) {
         return db
             .from('listwish_lists AS lists')
-            .select(
-                lists.id,
-                lists.list_title,
-                lists.list_description,
-                lists.date_created,
-                ...userFields,
-                db.raw(
-                    `count(DISTINCT wsh) AS number_of_wishes`
-                ),
-            )
-            .leftJoin(
-                'listwish_wishes AS wsh',
-                'lists.id',
-                'wsh.list_id',
-            )
-            .leftJoin(
-                'listwish_users AS usr',
-                'lists.user_id',
-                'usr.id',
-            )
-            .groupBy('usr.id', 'lists.id')
+            .select('*')
     },
 
     getById(db, id) {
@@ -87,7 +67,7 @@ const ListsService = {
         return{
             id: listData.id,
             list_title: xss(listData.list_title),
-            list_description: xss(listData.list_description),
+            list_description: xss(listData.list_description) || {},
             date_created: listData.date_created,
             user_id: listData.user_id,
         }
