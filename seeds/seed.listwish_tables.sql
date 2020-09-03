@@ -8,11 +8,11 @@ TRUNCATE
 
 INSERT INTO listwish_users (preferred_name, user_name, password)
 VALUES
-  ('Lip', 'lipCowan', 'password'),
-  ('Mike', 'MikeB', 'mikeysPassword'),
-  ('Usain', 'UBolt', 'canyoukeepup'),
-  ('Sammy', 'SamKeil', 'makeupBloggerZ'),
-  ('Jen', 'RescueDogz2', 'dogsAretheBest!');
+  ('Lip', 'lipCowan', '$2a$04$96pkDTqjJt2p7DeNtOEv2uXBwMacKqmcsacnEsAkjXIVXod7fuCUG'),
+  ('Mike', 'MikeB', '$2a$04$2zsghQ6mXXOgLgbbqrvmouZZaHUja1rSWtkR1umv7TFUCDFzeCi5q'),
+  ('Usain', 'UBolt', '$2a$04$n8dz3waDZ4lHyHzU2gs.9eVxSksc80RI4ZDGMrVrzhIYBnZA91ydC'),
+  ('Sammy', 'SamKeil', '$2a$04$4CAvRCgaBwg2w3RmGapwp.BzjUUkgAlHRnxFh90e27XveceB.AKQK'),
+  ('Jen', 'RescueDogz2', '$2a$04$v2tAmbgNJwDapMzMFM1e4.FR8/KJ7ZzBNKcsm6g5Tc4J8OOAdQFOC');
 
 INSERT INTO listwish_lists (list_title, list_description, user_id)
 VALUES 
