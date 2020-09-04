@@ -67,7 +67,7 @@ const ListsService = {
         return{
             id: listData.id,
             list_title: xss(listData.list_title),
-            list_description: xss(listData.list_description) || {},
+            list_description: xss(listData.list_description) || null,
             date_created: listData.date_created,
             user_id: listData.user_id,
         }
@@ -84,7 +84,7 @@ const ListsService = {
         return {
             id: wishData.id,
             wish_title: wishData.wish_title,
-            wish_url: wishData.wish_url || {},
+            wish_url: wishData.wish_url || null,
             purchased: wishData.purchased,
             date_added: wishData.date_added,
             list_id: wishData.list_id,

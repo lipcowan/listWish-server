@@ -31,7 +31,7 @@ const WishesService = {
         return {
             id: wish.id,
             wish_title: xss(wish.wish_title),
-            wish_url: wish.wish_url || {},
+            wish_url: wish.wish_url || null,
             purchased: wish.purchased,
             date_added: wish.date_added,
             list_id: wish.list_id,
