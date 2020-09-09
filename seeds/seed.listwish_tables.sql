@@ -24,13 +24,13 @@ VALUES
   ('TEST', 'Test-list for day 1', 1);
 
 
-INSERT INTO listwish_wishes (wish_title, wish_url, list_id)
+INSERT INTO listwish_wishes (wish_title, wish_url, list_id, user_id)
 VALUES
-  ('Chew Toys', 'https://www.amazon.com/dp/B07Z4GBGVV/ref=cm_sw_em_r_mt_dp_tbutFbYZ3JRGB', 1),
-  ('New Balance - size 7', 'https://www.amazon.com/New-Balance-Womens-Arishi-Running/dp/B07BL357Y5/ref=sr_1_3?dchild=1&keywords=new%2Bbalance%2Bsize%2B7&qid=1598898394&sr=8-3&th=1', 4),
-  ('Naked3 Palatte', NULL, 3),
-  ('Potted Plants', NULL, 2),
-  ('Dark Knight Trilogy UHD BluRay', NULL, 5),
-  ('Test Item', 'WWW.TEST.COM', 6);
+  ('Chew Toys', 'https://www.amazon.com/dp/B07Z4GBGVV/ref=cm_sw_em_r_mt_dp_tbutFbYZ3JRGB', 1, 5),
+  ('New Balance - size 7', 'https://www.amazon.com/New-Balance-Womens-Arishi-Running/dp/B07BL357Y5/ref=sr_1_3?dchild=1&keywords=new%2Bbalance%2Bsize%2B7&qid=1598898394&sr=8-3&th=1', 4, 3),
+  ('Naked3 Palatte', NULL, 3, 4),
+  ('Potted Plants', NULL, 2, 5),
+  ('Dark Knight Trilogy UHD BluRay', NULL, 5, 2),
+  ('Test Item', 'WWW.TEST.COM', 6, 1);
 
 COMMIT;
