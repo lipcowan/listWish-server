@@ -33,4 +33,56 @@ wishesRouter
         .catch(next)
   })
 
+wishesRouter
+  .route('/:wish_id')
+  .all((req,res, next) => {
+    WishesService.getById(
+      req.app.get('db'),
+      req.params.wish_id
+    )
+      .then(wish => {
+        if (!wish) {
+          return res.status(404).json({
+            error: { message: `Wish doesn't exist`}
+          })
+        }
+        res.wish = wish
+        next()
+      })
+      .catch(next)
+  })
+  .get((req, res, next) => {
+    res.json(WishesService.serializeWish(res.wish))
+  })
+  .delete((req, res, next) => {
+    WishesService.deleteWish(
+      req.app.get('db'),
+      req.params.wish_id
+    )
+      .then(numRowsAffected => {
+        res.status(204).end()
+      })
+      .catch(next)
+  })
+  .patch(requireAuth, jsonBodyParser, (req, res, next) => {
+    const { list_id, wish_title, wish_url } = req.body
+    const wishToUpdate = { list_id, wish_title, wish_url}
+
+    const numberOfValues = Object.values(wishToUpdate).filter(Boolean).length
+    if (numberOfValues === 0)
+      return res.status(400).json({
+        error: { message: `Request body must contain eith 'title' or 'url'`}
+      })
+
+    WishesService.updateWish(
+      req.app.get('db'),
+      req.params.wish_id,
+      wishToUpdate
+    )
+      .then(numRowsAffected => {
+        res.status(204).end()
+      })
+      .catch(next)
+  })
+
 module.exports = wishesRouter

@@ -27,6 +27,19 @@ const WishesService = {
           )
     },
 
+    deleteWish(db, id) {
+      return db('listwish_wishes')
+        .where({id})
+        .delete()
+
+    },
+
+    updateWish(db, id, newWishFields) {
+      return db('listwish_wishes')
+        .where({id})
+        .update(newWishFields)
+    },
+
     serializeWish(wish) {
         return {
             id: wish.id,
