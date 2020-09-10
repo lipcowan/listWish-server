@@ -56,6 +56,12 @@ const ListsService = {
           )
     },
 
+    deleteList(db, list_id) {
+        return db
+         .where({list_id})
+         .delete()
+    },
+
     serializeLists(lists) {
         return lists.map(this.serializeList)
     },
