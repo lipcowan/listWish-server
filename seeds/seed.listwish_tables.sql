@@ -3,7 +3,7 @@ BEGIN;
 TRUNCATE
   listwish_lists,
   listwish_wishes,
-  listwish_users,
+  listwish_users
 RESTART IDENTITY CASCADE;
 
 INSERT INTO listwish_users (preferred_name, user_name, password)
