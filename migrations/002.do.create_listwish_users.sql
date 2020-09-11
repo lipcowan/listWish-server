@@ -6,6 +6,6 @@ CREATE TABLE listwish_users (
     password TEXT NOT NULL
 );
 
-ALTER TABLE listwish_lists
+ALTER TABLE IF EXISTS listwish_lists
   ADD COLUMN
     user_id INTEGER REFERENCES listwish_users(id) NOT NULL; 
