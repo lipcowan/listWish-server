@@ -39,6 +39,7 @@ listsRouter
       })
       .catch(next)
   })
+  
 
 listsRouter
   .route('/:list_id')
@@ -48,6 +49,7 @@ listsRouter
       res.json(ListsService.serializeList(res.list))
   })
   .delete((req, res, next) => {
+    console.log('deleteRouter')
     ListsService.deleteList(
       req.app.get('db'),
       req.params.list_id
@@ -76,6 +78,7 @@ listsRouter
   
 async function checkListExists(req, res, next) {
     try {
+        console.log('middleware')
         const list = await ListsService.getById(
             req.app.get('db'),
             req.params.list_id

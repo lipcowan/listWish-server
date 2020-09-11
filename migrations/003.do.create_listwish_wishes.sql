@@ -4,6 +4,6 @@ CREATE TABLE listwish_wishes (
     wish_url TEXT,
     purchased BOOLEAN DEFAULT FALSE,
     date_added TIMESTAMPTZ DEFAULT now() NOT NULL,
-    list_id INTEGER REFERENCES listwish_lists(id) NOT NULL,
+    list_id INTEGER REFERENCES listwish_lists(id) ON DELETE CASCADE NOT NULL,
     user_id INTEGER REFERENCES listwish_users(id) NOT NULL
 );
