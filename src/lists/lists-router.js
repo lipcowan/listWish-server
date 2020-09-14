@@ -49,7 +49,6 @@ listsRouter
       res.json(ListsService.serializeList(res.list))
   })
   .delete((req, res, next) => {
-    console.log('deleteRouter')
     ListsService.deleteList(
       req.app.get('db'),
       req.params.list_id

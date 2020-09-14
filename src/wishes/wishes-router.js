@@ -35,6 +35,7 @@ wishesRouter
 
 wishesRouter
   .route('/:wish_id')
+  .all(requireAuth)
   .all((req,res, next) => {
     WishesService.getById(
       req.app.get('db'),
@@ -64,7 +65,7 @@ wishesRouter
       })
       .catch(next)
   })
-  .patch(requireAuth, jsonBodyParser, (req, res, next) => {
+  .patch(jsonBodyParser, (req, res, next) => {
     const { list_id, wish_title, wish_url } = req.body
     const wishToUpdate = { list_id, wish_title, wish_url}
 

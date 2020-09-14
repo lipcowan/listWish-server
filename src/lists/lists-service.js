@@ -9,15 +9,9 @@ const ListsService = {
     },
 
     getById(db, id) {
-        // return ListsService.getAllLists(db)
-        //     .where('lists.id', id)
-        //     .first()
-        console.log('hi', id)
-        return db
-        .from('listwish_lists AS lists')
-        .select('*')
-        .where('lists.id', id)
-        .first()
+        return ListsService.getAllLists(db)
+            .where('lists.id', id)
+            .first()
     },
 
     getByUser(db, user_name) {

@@ -19,8 +19,6 @@ app.use("/api/lists", listsRouter);
 app.use("/api/wishes", wishesRouter);
 app.use("/api/auth", authRouter);
 
-console.log('AppJS')
-
 app.use(function errorHandler(error, req, res, next) {
   let response;
   if (NODE_ENV === "production") {
