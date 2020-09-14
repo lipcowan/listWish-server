@@ -6,6 +6,7 @@ const { NODE_ENV } = require("./config");
 const listsRouter = require("./lists/lists-router");
 const wishesRouter = require("./wishes/wishes-router");
 const authRouter = require("./auth/auth-router");
+const usersRouter = require("./users/users-router");
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use(helmet());
 app.use("/api/lists", listsRouter);
 app.use("/api/wishes", wishesRouter);
 app.use("/api/auth", authRouter);
+app.use("/api/users", usersRouter);
 
 app.use(function errorHandler(error, req, res, next) {
   let response;
