@@ -127,6 +127,36 @@ function makeWishesArray(users, lists) {
     ]
 }
 
+function makeExpectedList(users, list) {
+    return {
+        id: list.id,
+        list_title: list.list_title,
+        list_description: list.list_description,
+        date_created: list.date_created.toISOString(),
+        user_id: users.id
+    }
+}
+
+function makeExpectedListWishes(users, listId, wishes) {
+    const expectedWishes = wishes
+      .filter(wish => wish.list_id === listId)
+    
+    return expectedWishes.map(wish => {
+        const wishUser = users.find(user => user.id === wish.user_id)
+        return {
+            id: wish.id,
+            wish_title: wish.wish_title,
+            wish_url: wish.wish_url,
+            purchased: wish.purchased,
+            date_added: wish.date_added.toISOString(),
+            list_id: listId,
+            user_id: user.id,
+        }
+    })
+}
+
+
+
 function makeListsFixtures() {
     const testUsers = makeUsersArray()
     const testLists = makeListsArray(testUsers)
@@ -200,6 +230,8 @@ module.exports = {
     makeUsersArray,
     makeListsArray,
     makeWishesArray,
+    makeExpectedList,
+    makeExpectedListWishes,
 
     makeListsFixtures,
     cleanTables,
