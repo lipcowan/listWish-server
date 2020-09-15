@@ -170,3 +170,41 @@ function seedUsers(db, users) {
       )
 }
 
+function seedListsTable(db, users, lists, wishes=[]) {
+    return db.transaction(async trx => {
+        await seedUsers(trx, users)
+        await trx.into('listwish_lists').insert(lists)
+        await trx.raw(
+            `SELECT setval('listwish_lists_id_seq', ?)`,
+            [lists[lists.length - 1].id],
+        )
+        if (wishes.length) {
+            await trx.into('listwish_wishes').insert(wishes)
+            await trx.raw(
+                `SELECT setval('listwish_wishes_id_seq', ?)`,
+                [wishes[wishes.length - 1].id],
+            )
+        }
+    })
+}
+
+function makeAuthHeader(user, secret = process.env.JWT_SECRET) {
+    const token = jwt.sign({user_id: user.id}, secret, {
+        subject: user.user_name,
+        algorithm: 'HS256',
+    })
+    return `Bearer ${token}`
+}
+
+module.exports = {
+    makeUsersArray,
+    makeListsArray,
+    makeWishesArray,
+
+    makeListsFixtures,
+    cleanTables,
+    seedUsers,
+    seedListsTable,
+    makeAuthHeader,
+}
+
