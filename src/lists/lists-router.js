@@ -77,7 +77,6 @@ listsRouter
   
 async function checkListExists(req, res, next) {
     try {
-        console.log('middleware')
         const list = await ListsService.getById(
             req.app.get('db'),
             req.params.list_id
