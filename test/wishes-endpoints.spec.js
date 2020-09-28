@@ -2,13 +2,15 @@ const knex = require('knex')
 const app = require('../src/app')
 const helpers = require('./test-helpers')
 const { expect } = require('chai')
+const supertest = require('supertest')
 
 describe('Wishes Endpoints', function() {
   let db
 
   const {
-    testArticles,
+    testLists,
     testUsers,
+    testWishes,
   } = helpers.makeListsFixtures()
 
   before('make knex instance', () => {
@@ -100,4 +102,37 @@ describe('Wishes Endpoints', function() {
       })
     })
   })
+
+  describe(`PATCH /api/wishes/:wish_id`, () => {
+    const testList = testLists[0]
+    const testUser = testUsers[0]
+    const updatedTitle = { 
+      wish_title: 'Testing update',
+      list_id: testList.id
+    }
+    
+    it(`responds 204`, () => {
+
+      return supertest(app)
+        .patch('/api/wishes/1')
+        .set('Authorization', helpers.makeAuthHeader(testUser))
+        .send(updatedTitle)
+        .expect(204)
+    })
+  })
+
+  describe(`DELETE /api/wishes/:wish_id`, () => {
+    const testUser = testUsers[0]
+    const testWish = testWishes[0]
+    
+    it(`responds 204`, () => {
+
+      return supertest(app)
+        .delete(`/api/wishes/${testWish.id}`)
+        .set('Authorization', helpers.makeAuthHeader(testUser))
+        .send(`${testWish.id}`)
+        .expect(204)
+    })
+  })
+
 })

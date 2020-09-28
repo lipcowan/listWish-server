@@ -138,4 +138,18 @@ describe('Lists Endpoints', () => {
       })
     })
   })
+
+  describe(`DELETE /api/lists/:list_id`, () => {
+
+    it(`responds 204`, () => {
+      const listId = 1
+
+      return supertest(app)
+        .delete(`/api/lists/${listId}`)
+        .set('Authorization', helpers.makeAuthHeader(testUser))
+        .send(listId)
+        .expect(204)
+    })
+  })
+
 })

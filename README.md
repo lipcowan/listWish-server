@@ -66,7 +66,7 @@
 * delete specific wish => wishID and auth required
 
 ##### PATCH /api/wishes/:wish_id
-* edit a wish's title or URL => wishID and at either title or url are required - plus auth required 
+* edit a wish's title or URL => listID and either title or url are required - plus auth required 
 
 ### Users Endpoint
 
